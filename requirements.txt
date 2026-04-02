@@ -1,0 +1,5 @@
+markitdown[pdf]
+langextract[openai]
+pandas
+# Avoid NumPy 2.x binary-compat issues with some wheels (e.g., numexpr/pandas in older envs).
+numpy<2

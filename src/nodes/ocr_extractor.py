@@ -1,9 +1,9 @@
 import base64
-from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
+from src.llm import get_llm
 
 def ocr_images(state):
-    llm = ChatOpenAI(model="gpt-4o")
+    llm = get_llm()
     processed_files = state["processed_files"]
     results = []
     

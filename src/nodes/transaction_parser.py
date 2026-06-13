@@ -1,20 +1,7 @@
 import json
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from typing import List
-
-class Transaction(BaseModel):
-    date: str
-    type: str = Field(description="income or expenditure")
-    amount: float
-    category: str
-
-import json
-import os
-from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, Field
-from typing import List
-from dotenv import load_dotenv
+from src.llm import get_llm
 
 class Transaction(BaseModel):
     date: str
@@ -23,12 +10,7 @@ class Transaction(BaseModel):
     category: str
 
 def parse_transactions(state):
-    load_dotenv()
-    llm = ChatOpenAI(
-        model="gpt-4o",
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
-        openai_api_url=os.getenv("OPENAI_BASE_URL")
-    )
+    llm = get_llm()
     ocr_results = state["ocr_results"]
     all_transactions = []
     
